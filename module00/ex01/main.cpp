@@ -6,18 +6,27 @@
 /*   By: dzuiev <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 13:21:58 by dzuiev            #+#    #+#             */
-/*   Updated: 2024/07/09 17:14:58 by dzuiev           ###   ########.fr       */
+/*   Updated: 2024/07/15 15:38:41 by dzuiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include <iostream>
-//#include <limits>
 #include "PhoneBook.hpp"
-//#include "Contact.hpp"
 
 int main(void) {
-	PhoneBook book;
+	PhoneBook	book;
+	std::string	input = "";
 
-    book.welcomeMessage();
+	book.welcomeMessage();
+	while (input.compare("EXIT")) {
+		if (!input.compare("ADD")) {
+			book.addContact();
+		}
+		else if (!input.compare("SEARCH")) {
+			book.displayBook();
+			book.searchContact();
+		}
+		std::cout << "> " << std::flush;
+		std::cin >> input;
+	}
 	return (0);
 }

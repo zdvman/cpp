@@ -6,7 +6,7 @@
 /*   By: dzuiev <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 15:55:26 by dzuiev            #+#    #+#             */
-/*   Updated: 2024/07/09 17:15:00 by dzuiev           ###   ########.fr       */
+/*   Updated: 2024/07/15 18:26:11 by dzuiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@ std::string	Contact::_getInput(std::string prompt) const {
 	while (1) {
 		std::cout << prompt << std::flush;
 		std::getline(std::cin, input);
-		if (std::cin.good() && !input.empty())
+		if (std::cin.good() && !input.empty()) {
 			break ;
+		}
 		else {
 			std::cin.clear();
 			std::cout << "Invalid input, try again." << std::endl;
@@ -40,28 +41,35 @@ void	Contact::init(void) {
 	std::cin.ignore();
 	this->_firstName = _getInput("Enter your name: ");
 	this->_lastName = _getInput("Enter your surname: ");
+	this->_nickName = _getInput("Enter your nickname: ");
 	this->_phoneNumber = _getInput("Enter your phone number :");
 	this->_secretQuestion = _getInput("Enter your secret question: ");
 	this->_secretAnswer = _getInput("Enter your answer on secret question: ");
 	std::cout << std::endl;
 }
 
-void	Contact::display(int index) const {
+int	Contact::noContactInBook() const {
 	if (this->_firstName.empty()
 		|| this->_lastName.empty()
 		|| this->_nickName.empty())
-		return ;
-	std::cout << "|" << std::setw(10) << index << std::flush;
-	std::cout << "|" << std::setw(10) << _getFormattedSubstring(this->_firstName) << std::flush;
-	std::cout << "|" << std::setw(10) << _getFormattedSubstring(this->_lastName) << std::flush;
-	std::cout << "|" << std::setw(10) << _getFormattedSubstring(this->_nickName) << std::flush;
-	std::cout << "|" << std::endl;
+		return (1);
+	return (0);
 }
 
-void	Contact::view(int index) const {
-	if (this->_firstName.empty()
-		|| this->_lastName.empty()
-		|| this->_nickName.empty())
+int	Contact::displayContact(int index) const {
+
+	if (noContactInBook())
+		return 1;
+	std::cout << "│" << std::setfill(' ')<< std::setw(10) << index << std::flush;
+	std::cout << "│" << std::setw(10) << this->_getFormattedSubstring(this->_firstName) << std::flush;
+	std::cout << "│" << std::setw(10) << this->_getFormattedSubstring(this->_lastName) << std::flush;
+	std::cout << "│" << std::setw(10) << this->_getFormattedSubstring(this->_nickName) << std::flush;
+	std::cout << "│" << std::endl;
+	return (0);
+}
+
+void	Contact::viewContact(int index) const {
+	if (noContactInBook())
 		return ;
 	std::cout << std::endl;
 	std::cout << "======>>> CONTACT #" << index << " <<<======" << std::endl;
