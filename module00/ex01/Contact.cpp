@@ -6,24 +6,27 @@
 /*   By: dzuiev <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 15:55:26 by dzuiev            #+#    #+#             */
-/*   Updated: 2024/07/15 18:26:11 by dzuiev           ###   ########.fr       */
+/*   Updated: 2024/07/15 21:53:52 by dzuiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
 
-Contact::Contact() {};
-Contact::~Contact() {};
+Contact::Contact() {}; // Constructor
+Contact::~Contact() {}; // Destructor
 
 std::string	Contact::_getInput(std::string prompt) const {
 	std::string input = "";
-	while (1) {
+	while (true) {
+		// std::flush - ensure the prompt message is displayed immediately
 		std::cout << prompt << std::flush;
 		std::getline(std::cin, input);
+		
 		if (std::cin.good() && !input.empty()) {
 			break ;
 		}
 		else {
+			// Clear any error flags
 			std::cin.clear();
 			std::cout << "Invalid input, try again." << std::endl;
 		}
@@ -31,13 +34,16 @@ std::string	Contact::_getInput(std::string prompt) const {
 	return (input);
 }
 
-std::string	Contact::_getFormattedSubstring(std::string input) const {
-	if (input.size() > 10)
-		return input.substr(0, 9) + '.';
-	return input.substr(0, 10);
+std::string	Contact::_getFormattedSubstring(std::string input, size_t size) const {
+	if (input.size() > size)
+		return input.substr(0, size - 1) + '.';
+	return input.substr(0, size);
 }
 
 void	Contact::init(void) {
+	// std::cin.ignore() is used to clear
+	//  any leftover newline characters
+	//  from the input buffer
 	std::cin.ignore();
 	this->_firstName = _getInput("Enter your name: ");
 	this->_lastName = _getInput("Enter your surname: ");
@@ -58,24 +64,39 @@ int	Contact::noContactInBook() const {
 
 int	Contact::displayContact(int index) const {
 
-	if (noContactInBook())
+	if (this->noContactInBook())
 		return 1;
 	std::cout << "│" << std::setfill(' ')<< std::setw(10) << index << std::flush;
-	std::cout << "│" << std::setw(10) << this->_getFormattedSubstring(this->_firstName) << std::flush;
-	std::cout << "│" << std::setw(10) << this->_getFormattedSubstring(this->_lastName) << std::flush;
-	std::cout << "│" << std::setw(10) << this->_getFormattedSubstring(this->_nickName) << std::flush;
+	std::cout << "│" << std::setw(10) << this->_getFormattedSubstring(this->_firstName, 10) << std::flush;
+	std::cout << "│" << std::setw(10) << this->_getFormattedSubstring(this->_lastName, 10) << std::flush;
+	std::cout << "│" << std::setw(10) << this->_getFormattedSubstring(this->_nickName, 10) << std::flush;
 	std::cout << "│" << std::endl;
 	return (0);
 }
 
+int		Contact::paddingSize(int width, std::string str) const {
+	int	size = str.size();
+	return (((width - size) / 2) + size);
+}
+
 void	Contact::viewContact(int index) const {
-	if (noContactInBook())
+	int	width = 46;
+	int	leftPadding = 3;
+	std::string firstName = this->_getFormattedSubstring("First Name: " + this->_firstName, 37);
+	std::string lastName = this->_getFormattedSubstring("Last Name:  " + this->_lastName, 37);
+	std::string nickName = this->_getFormattedSubstring("Nickname:   " + this->_nickName, 37);
+
+
+	if (this->noContactInBook())
 		return ;
 	std::cout << std::endl;
-	std::cout << "======>>> CONTACT #" << index << " <<<======" << std::endl;
-	std::cout << "First Name:\t" << this->_firstName << std::endl;
-	std::cout << "Last Name:\t" << this->_lastName << std::endl;
-	std::cout << "Nickname:\t" << this->_nickName << std::endl;
+	std::cout << "╔═══════════ >>> CONTACT # " << index << " <<< ═══════════╗" << std::endl;
+	std::cout << "║" << std::setfill(' ') << std::setw(width - 3) << " " << "║" << std::endl;
+	std::cout << "║" << std::setw(leftPadding) << " " << firstName << std::setw(width - leftPadding - firstName.length()) << "║" << std::endl;
+	std::cout << "║" << std::setw(leftPadding) << " " << lastName << std::setw(width - leftPadding - lastName.length()) << "║" << std::endl;
+	std::cout << "║" << std::setw(leftPadding) << " " << nickName << std::setw(width - leftPadding - nickName.length()) << "║" << std::endl;
+	std::cout << "║" << std::setw(width - 3) << " " << "║" << std::endl;
+	std::cout << "╚═══════════════════════════════════════════╝" << std::endl;
 	std::cout << std::endl;
 }
 
