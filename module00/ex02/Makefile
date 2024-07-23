@@ -5,10 +5,11 @@
 #                                                     +:+ +:+         +:+      #
 #    By: dzuiev <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/07/03 11:40:08 by dzuiev            #+#    #+#              #
-#    Updated: 2024/07/23 16:48:01 by dzuiev           ###   ########.fr        #
+#    Created: 2024/07/23 10:55:15 by dzuiev            #+#    #+#              #
+#    Updated: 2024/07/23 10:58:33 by dzuiev           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 # **************************************************************************** #
 # Colors for messages
@@ -21,7 +22,7 @@ RESET=\033[0m
 
 # **************************************************************************** #
 # Basic Configurations
-NAME = megaphone # Name of the executable file
+NAME = Account
 
 DEBUG = -g
 CXX_STANDARD = -std=c++98
@@ -52,13 +53,14 @@ OBJ_DIR = .obj
 
 # **************************************************************************** #
 # Source and Object files
-FILES = megaphone
+# HEADER = Account.hpp
+FILES = tests Account
 SRC = $(addprefix $(SRC_DIR)/, $(FILES:=.cpp))
 OBJ = $(addprefix $(OBJ_DIR)/, $(FILES:=.o))
 # **************************************************************************** #
 
 # **************************************************************************** #
-all: $(NAME) # Main target
+all: $(NAME)
 
 # Linking the executable
 $(NAME): $(OBJ)
@@ -103,5 +105,5 @@ re: fclean all
 # Phony targets
 .PHONY: all clean fclean re
 
-# .PHONY is 
+# .PHONY is a directive to indicate that the following targets are not actual files
 # **************************************************************************** #
