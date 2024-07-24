@@ -6,44 +6,78 @@
 /*   By: dzuiev <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 12:56:11 by dzuiev            #+#    #+#             */
-/*   Updated: 2024/07/15 22:10:32 by dzuiev           ###   ########.fr       */
+/*   Updated: 2024/07/24 14:59:36 by dzuiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
-PhoneBook::PhoneBook() {};
-PhoneBook::~PhoneBook() {};
-/*
-Use the reminder of 8 to receive digits from 0 to 7
-Explanation:
-i: 0 i % 8: 0
-i: 1 i % 8: 1
-i: 2 i % 8: 2
-i: 3 i % 8: 3
-i: 4 i % 8: 4
-i: 5 i % 8: 5
-i: 6 i % 8: 6
-i: 7 i % 8: 7
-i: 8 i % 8: 0
-i: 9 i % 8: 1
-i: 10 i % 8: 2
-i: 11 i % 8: 3
-i: 12 i % 8: 4
-i: 13 i % 8: 5
-i: 14 i % 8: 6
-i: 15 i % 8: 7
-*/
+// ************************************************************************** //
+//                                                                            //
+// Constructor: PhoneBook                                                     //
+//                                                                            //
+// Description:                                                               //
+//     Initializes a new instance of the PhoneBook class.                     //
+//                                                                            //
+// ************************************************************************** //
+PhoneBook::PhoneBook() {}
+
+// ************************************************************************** //
+//                                                                            //
+// Destructor: ~PhoneBook                                                     //
+//                                                                            //
+// Description:                                                               //
+//     Cleans up the instance of the PhoneBook class.                         //
+//                                                                            //
+// ************************************************************************** //
+PhoneBook::~PhoneBook() {}
+
+// ************************************************************************** //
+//                                                                            //
+// Method: addContact                                                         //
+//                                                                            //
+// Description:                                                               //
+//     Adds a new contact to the phone book. Uses the remainder of 8 to cycle //
+//     through indices from 0 to 7.                                           //
+//                                                                            //
+// Explanation:                                                               //
+//     i: 0  i % 8: 0                                                         //
+//     i: 1  i % 8: 1                                                         //
+//     i: 2  i % 8: 2                                                         //
+//     i: 3  i % 8: 3                                                         //
+//     i: 4  i % 8: 4                                                         //
+//     i: 5  i % 8: 5                                                         //
+//     i: 6  i % 8: 6                                                         //
+//     i: 7  i % 8: 7                                                         //
+//     i: 8  i % 8: 0                                                         //
+//     i: 9  i % 8: 1                                                         //
+//     i: 10 i % 8: 2                                                         //
+//                                                                            //
+// Parameters:                                                                //
+//     void                                                                   //
+//                                                                            //
+// ************************************************************************** //
 void	PhoneBook::addContact(void) {
-	// static variable declaration
-	// to reuse the value of i in the next function call
+	// Static variable to retain the value of i between function calls
 	static int i = 0;
 
+	// Initialize the contact at index i % 8
 	this->_contacts[i % 8].init();
 	this->_contacts[i % 8].assignIndex(i % 8);
 	i++;
 }
 
+// ************************************************************************** //
+//                                                                            //
+// Method: _readInput                                                         //
+//                                                                            //
+// Description:                                                               //
+//     Reads and validates an integer input from the user.                    //
+//                                                                            //
+// Return Value:                                                              //
+//     int - The validated integer input                                      //
+//                                                                            //
+// ************************************************************************** //
 int	PhoneBook::_readInput(void) const {
 	int		input = -1;
 	bool	validIndex = false;
@@ -68,7 +102,19 @@ int	PhoneBook::_readInput(void) const {
 	return (input);
 }
 
-// to draw a specific line according to the position
+// ************************************************************************** //
+//                                                                            //
+// Method: drawLine                                                           //
+//                                                                            //
+// Description:                                                               //
+//     Draws a line for the table display in the console.                     //
+//                                                                            //
+// Parameters:                                                                //
+//     int typeOfLine - The type of line to draw                              //
+//     int width - The width of the line                                      //
+//     std::string str - The string to display within the line                //
+//                                                                            //
+// ************************************************************************** //
 void	PhoneBook::drawLine(int typeOfLine, int width, std::string str) const {
 	switch (typeOfLine) {
 		case (0): { // welcome string
@@ -112,6 +158,17 @@ void	PhoneBook::drawLine(int typeOfLine, int width, std::string str) const {
 	}
 }
 
+// ************************************************************************** //
+//                                                                            //
+// Method: displayBook                                                        //
+//                                                                            //
+// Description:                                                               //
+//     Displays the list of contacts in the phone book in a formatted manner. //
+//                                                                            //
+// Return Value:                                                              //
+//     int - Returns 0 if successful, otherwise an error code                 //
+//                                                                            //
+// ************************************************************************** //
 int	PhoneBook::displayBook(void) const {
 	if (this->_contacts[0].noContactInBook()) {
 		std::cout << "There are no CONTACTS in the PHONEBOOK yet" << std::endl;
@@ -143,6 +200,14 @@ int	PhoneBook::displayBook(void) const {
 	return (0);
 }
 
+// ************************************************************************** //
+//                                                                            //
+// Method: searchContact                                                      //
+//                                                                            //
+// Description:                                                               //
+//     Searches for a contact by index and displays the contact's details.    //
+//                                                                            //
+// ************************************************************************** //
 void	PhoneBook::searchContact(void) const {
 	int i = this->_readInput();
 	if (this->_contacts[i].noContactInBook()) {
@@ -152,11 +217,36 @@ void	PhoneBook::searchContact(void) const {
 	this->_contacts[i].viewContact(i);
 }
 
+// ************************************************************************** //
+//                                                                            //
+// Method: paddingSize                                                        //
+//                                                                            //
+// Description:                                                               //
+//     Calculates the padding size required to center-align text within a     //
+//     specified width.                                                       //
+//                                                                            //
+// Parameters:                                                                //
+//     int width - The total width available                                  //
+//     std::string str - The string to be centered                            //
+//                                                                            //
+// Return Value:                                                              //
+//     int - The padding size                                                 //
+//                                                                            //
+// ************************************************************************** //
 int		PhoneBook::paddingSize(int width, std::string str) const {
 	int	size = str.size();
 	return (((width - size) / 2) + size);
 }
 
+// ************************************************************************** //
+//                                                                            //
+// Method: welcomeMessage                                                     //
+//                                                                            //
+// Description:                                                               //
+//     Displays a welcome message with instructions on how to use the phone   //
+//     book.                                                                  //
+//                                                                            //
+// ************************************************************************** //
 void PhoneBook::welcomeMessage(void) const {
 	int			width = 46;
 	int			leftPadding = 3;

@@ -7,6 +7,63 @@
 //                                                                            //
 // ************************************************************************** //
 
+// ************************************************************************** //
+//                                                                            //
+// Explanation of #pragma once and Include Guards                             //
+//                                                                            //
+//     #pragma once:                                                          //
+//         #pragma once is a preprocessor directive that ensures a file is    //
+//         included only once in a single compilation. It is a more modern    //
+//         and less error-prone way to prevent multiple inclusions of the     //
+//         same file. It is supported by most modern compilers (such as GCC,  //
+//         Clang, MSVC).                                                      //
+//                                                                            //
+//     Include Guards:                                                        //
+//         Include guards are a traditional way to prevent multiple           //
+//         inclusions of a header file. They use preprocessor directives      //
+//         #ifndef, #define, and #endif.                                      //
+//                                                                            //
+//         Example:                                                           //
+//             #ifndef __ACCOUNT_H__                                          //
+//             #define __ACCOUNT_H__                                          //
+//             // Header file content                                         //
+//             #endif // __ACCOUNT_H__ //                                     //
+//                                                                            //
+//     Why Use Both:                                                          //
+//         Compatibility: #pragma once is not part of the C++ standard,       //
+//         although it is widely supported. Including traditional include     //
+//         guards ensures compatibility with compilers that do not support    //
+//         #pragma once.                                                      //
+//         Redundancy: Using both provides an extra layer of protection. If   //
+//         one method fails or is not supported, the other will ensure the    //
+//         file is included only once.                                        //
+//                                                                            //
+// ************************************************************************** //
+//                                                                            //
+// Explanation of Static Member Functions                                     //
+//                                                                            //
+//     Declaration and Definition of Static Member Functions:                 //
+//         Declaration: The static keyword is used in the class definition    //
+//         to indicate that a member function is static. This means the       //
+//         function is associated with the class itself rather than any       //
+//         particular instance of the class.                                  //
+//                                                                            //
+//         Definition: When defining a static member function outside the     //
+//         class, the static keyword is not used. The function is already     //
+//         declared as static in the class declaration, so it is redundant    //
+//         and incorrect to use static again.                                 //
+//                                                                            //
+//         Example:                                                           //
+//             class Account {                                                //
+//                 public:                                                    //
+//                     static int getNbAccounts(void);                        //
+//             };                                                             //
+//                                                                            //
+//             int Account::getNbAccounts(void) {                             //
+//                 return _nbAccounts;                                        //
+//             }                                                              //
+//                                                                            //
+// ************************************************************************** //
 
 #pragma once
 #ifndef __ACCOUNT_H__
@@ -66,4 +123,4 @@ private:
 // ************************************************************************** //
 
 
-#endif /* __ACCOUNT_H__ */
+#endif // __ACCOUNT_H__ //
