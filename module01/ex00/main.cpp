@@ -6,7 +6,7 @@
 /*   By: dzuiev <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 14:52:02 by dzuiev            #+#    #+#             */
-/*   Updated: 2024/07/25 16:43:54 by dzuiev           ###   ########.fr       */
+/*   Updated: 2024/08/13 13:37:02 by dzuiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int main (void) {
 	// ********************************************************************** //
 	Zombie* zombieOnTheHeap = newZombie(name); 
 	zombieOnTheHeap->announce(); 
-	delete(zombieOnTheHeap); 
+	delete zombieOnTheHeap; 
 
 	// ********************************************************************** //
 	// Generate and print a random name                                       //
