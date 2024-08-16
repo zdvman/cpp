@@ -5,12 +5,11 @@
 #                                                     +:+ +:+         +:+      #
 #    By: dzuiev <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/08/13 15:10:09 by dzuiev            #+#    #+#              #
-#    Updated: 2024/08/16 12:37:21 by dzuiev           ###   ########.fr        #
+#    Created: 2024/08/16 11:49:56 by dzuiev            #+#    #+#              #
+#    Updated: 2024/08/16 17:39:21 by dzuiev           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# **************************************************************************** #
 # Colors for messages
 GREEN=\033[0;32m
 YELLOW=\033[0;33m
@@ -21,7 +20,7 @@ RESET=\033[0m
 
 # **************************************************************************** #
 # Basic Configurations
-NAME = brain
+NAME = replace
 
 DEBUG = -g
 CXX_STANDARD = -std=c++98
@@ -52,7 +51,7 @@ OBJ_DIR = .obj
 
 # **************************************************************************** #
 # Source and Object files
-FILES = main Weapon HumanA HumanB
+FILES = main SedLikeReplacer
 SRC = $(addprefix $(SRC_DIR)/, $(FILES:=.cpp))
 OBJ = $(addprefix $(OBJ_DIR)/, $(FILES:=.o))
 # **************************************************************************** #
@@ -92,6 +91,7 @@ fclean: clean
 		$(RM) $(NAME); \
 		echo "$(RED)$(NAME) removed$(RESET)"; \
 	fi
+	$(RM) *.replace
 # rm -rf - remove the directory with all its content
 # -r - remove directories and their contents recursively
 # -f - ignore nonexistent files and arguments, never prompt
@@ -101,7 +101,7 @@ re: fclean all
 
 # **************************************************************************** #
 # Phony targets
-.PHONY: all clean fclean reSedLikeReplacer
+.PHONY: all clean fclean re
 
 # .PHONY is a directive to indicate that the following targets are not actual files
 # **************************************************************************** #

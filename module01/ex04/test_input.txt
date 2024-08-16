@@ -1,0 +1,5 @@
+This is a simple test file.
+We will replace certain words in this file.
+For example, we can replace the word "test" with "exam".
+Or replace the word "replace" with "substitute".
+This file will help us verify that our program works correctly.
