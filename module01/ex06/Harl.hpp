@@ -6,7 +6,7 @@
 /*   By: dzuiev <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 17:45:06 by dzuiev            #+#    #+#             */
-/*   Updated: 2024/08/19 14:32:51 by dzuiev           ###   ########.fr       */
+/*   Updated: 2024/08/19 15:23:02 by dzuiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ public:
     void filter(std::string level);              // Public method to filter and display messages
 
 private:
+    std::string _levels[4];
+
     void debug();                                // Private method for DEBUG level complaint
     void info();                                 // Private method for INFO level complaint
     void warning();                              // Private method for WARNING level complaint

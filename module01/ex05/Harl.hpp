@@ -6,7 +6,7 @@
 /*   By: dzuiev <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 17:45:06 by dzuiev            #+#    #+#             */
-/*   Updated: 2024/08/16 17:53:45 by dzuiev           ###   ########.fr       */
+/*   Updated: 2024/08/19 16:04:39 by dzuiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ public:
     void complain(std::string level);            // Public method to handle complaints based on level
 
 private:
+    std::string _levels[4];
+
     void debug();                                // Private method for DEBUG level complaint
     void info();                                 // Private method for INFO level complaint
     void warning();                              // Private method for WARNING level complaint
