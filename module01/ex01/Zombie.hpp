@@ -6,7 +6,7 @@
 /*   By: dzuiev <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 11:50:30 by dzuiev            #+#    #+#             */
-/*   Updated: 2024/08/13 13:15:58 by dzuiev           ###   ########.fr       */
+/*   Updated: 2024/08/22 12:30:27 by dzuiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ public:
 	~Zombie(); // Destructor
 
 	void announce(void) const; // Method for the Zombie to announce itself
+
+	void setName(std::string name);// Setter for _name
 };
 
 Zombie* zombieHorde( int N, std::string name );

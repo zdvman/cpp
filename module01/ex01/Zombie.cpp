@@ -6,7 +6,7 @@
 /*   By: dzuiev <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 11:51:03 by dzuiev            #+#    #+#             */
-/*   Updated: 2024/08/13 13:26:44 by dzuiev           ###   ########.fr       */
+/*   Updated: 2024/08/22 12:31:36 by dzuiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,9 @@ Zombie::~Zombie() {
 void	Zombie::announce(void) const {
 	// Print the Zombie's name and a message
 	std::cout << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+}
+
+void Zombie::setName(std::string name)
+{
+	this->_name = name;
 }
