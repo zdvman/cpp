@@ -6,7 +6,7 @@
 /*   By: dzuiev <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 11:52:27 by dzuiev            #+#    #+#             */
-/*   Updated: 2024/08/28 19:08:53 by dzuiev           ###   ########.fr       */
+/*   Updated: 2024/08/29 15:53:33 by dzuiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,11 +105,18 @@ public:
 
 /* ************************************************************************** */
 /*                                                                            */
-/* Increment and Decrement Operators:                                         */
-/* - Supports both prefix and postfix increment (++), and decrement (--)      */
-/*   operators.                                                              */
-/* - Prefix operators modify and return the object itself.                    */
-/* - Postfix operators return a temporary copy before modifying the object.   */
+/*  Prefix vs. Postfix Increment/Decrement Operators in C++                   */
+/*                                                                            */
+/*  - **Prefix (`++a`, `--a`)**:                                              */
+/*    - The operation is performed first, and then the result is returned.    */
+/*    - Does not take any parameters.                                         */
+/*                                                                            */
+/*  - **Postfix (`a++`, `a--`)**:                                             */
+/*    - The current value is returned first, and then the operation is        */
+/*      performed.                                                            */
+/*    - Takes an `int` parameter to distinguish it from the prefix version.   */
+/*    - The `int` parameter is not used in the function body; it is a         */
+/*      placeholder to differentiate between the two overloads.               */
 /*                                                                            */
 /* ************************************************************************** */
 	Fixed& operator++(void); // prefix increment

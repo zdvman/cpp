@@ -6,7 +6,7 @@
 /*   By: dzuiev <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 12:26:40 by dzuiev            #+#    #+#             */
-/*   Updated: 2024/08/27 15:29:47 by dzuiev           ###   ########.fr       */
+/*   Updated: 2024/08/29 10:49:03 by dzuiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,25 +162,78 @@
 
 class Fixed {
 public:
+/* ************************************************************************** */
+/*                                                                            */
+/*  Constructors and Destructor:                                              */
+/*  - Default constructor: Initializes a `Fixed` object with a default        */
+/*    fixed-point value of 0.                                                 */
+/*  - Integer constructor: Converts the given integer `value` to a            */
+/*    fixed-point representation by shifting it left by `_fractionalBits`.    */
+/*  - Float constructor: Converts the given floating-point `value` to a       */
+/*    fixed-point representation by multiplying it by `2^_fractionalBits`     */
+/*    and rounding the result.                                                */
+/*  - Copy constructor: Initializes a new `Fixed` object by copying the       */
+/*    value from another `Fixed` object.                                      */
+/*  - Destructor: Cleans up resources used by the `Fixed` object.             */
+/*                                                                            */
+/* ************************************************************************** */
 	Fixed(void);
 	Fixed(const int value);
 	Fixed(const float value);
 	Fixed(const Fixed& other);
-	Fixed& operator=(const Fixed& other);
 	~Fixed();
 
+/* ************************************************************************** */
+/*                                                                            */
+/*  Copy Assignment Operator:                                                 */
+/*  - Assigns the value from another `Fixed` object to the current object.    */
+/*  - The current object's fixed-point value is updated to match the `other`  */
+/*    object.                                                                 */
+/*                                                                            */
+/* ************************************************************************** */
+	Fixed& operator=(const Fixed& other);
+
+/* ************************************************************************** */
+/*                                                                            */
+/*  Getters and Setters:                                                      */
+/*  - `getRawBits`: Returns the raw fixed-point value stored in the object.   */
+/*  - `setRawBits`: Sets the raw fixed-point value of the object to the       */
+/*    provided integer `raw`.                                                 */
+/*                                                                            */
+/* ************************************************************************** */
 	int getRawBits(void) const;
 	void setRawBits(int const raw);
 
+/* ************************************************************************** */
+/*                                                                            */
+/*  Conversion Functions:                                                     */
+/*  - `toFloat`: Converts the fixed-point value to a floating-point number.   */
+/*  - `toInt`: Converts the fixed-point value to an integer.                  */
+/*                                                                            */
+/* ************************************************************************** */
 	float toFloat(void) const;
 	int toInt(void) const;
 
 private:
+/* ************************************************************************** */
+/*                                                                            */
+/*  Internal Representation:                                                  */
+/*  - `_fixedPointValue`: Stores the actual fixed-point number as an integer. */
+/*  - `_fractionalBits`: Number of bits used for the fractional part of the   */
+/*    fixed-point value (8 for Q8.8 format).                                  */
+/*                                                                            */
+/* ************************************************************************** */
 	int _fixedPointValue;
-	static const int _fractionalBits = 8; // Number of bits used for the fractional part (8 for Q8.8)
+	static const int _fractionalBits = 8;
 };
 
-// Перегрузка оператора <<
+/* ************************************************************************** */
+/*                                                                            */
+/*  Overloaded `<<` Operator:                                                  */
+/*  - Allows `Fixed` objects to be output to streams like `std::cout`.         */
+/*  - Converts the `Fixed` object to a float before outputting.                */
+/*                                                                            */
+/* ************************************************************************** */
 std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
 
 #endif

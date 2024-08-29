@@ -6,7 +6,7 @@
 /*   By: dzuiev <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 14:52:02 by dzuiev            #+#    #+#             */
-/*   Updated: 2024/08/16 14:53:44 by dzuiev           ###   ########.fr       */
+/*   Updated: 2024/08/29 11:09:20 by dzuiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int main (void) {
 	// Declare a Zombie object on the stack                                   //
 	// using the name provided by the user                                    //
 	// ********************************************************************** //
-	Zombie zombieOnTheStack(name); 
+	Zombie zombieOnTheStack(name);
+	zombieOnTheStack.announce();
 
 	std::cout << "Creating zombie on the heap." << std::endl;
 	std::cout << "Input Zombie's name: " << std::flush;
