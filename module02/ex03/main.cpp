@@ -6,51 +6,53 @@
 /*   By: dzuiev <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 18:51:06 by dzuiev            #+#    #+#             */
-/*   Updated: 2024/08/28 18:57:36 by dzuiev           ###   ########.fr       */
+/*   Updated: 2024/08/29 10:37:08 by dzuiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Point.hpp"
 
 int main() {
-	// Example 1: Point inside the triangle
+	// Define the vertices of the triangle
 	Point A(0, 0);
 	Point B(10, 30);
 	Point C(20, 0);
-	Point P_inside(10, 15);
 
-	if (bsp(A, B, C, P_inside)) {
-		std::cout << "Example 1: The point (10, 15) is inside the triangle." << std::endl;
-	} else {
-		std::cout << "Example 1: The point (10, 15) is outside the triangle." << std::endl;
-	}
+	// Test case 1: Point inside the triangle
+	Point P1(10, 15);
+	std::cout << "Test 1: Point (10, 15) is " 
+			<< (bsp(A, B, C, P1) ? "inside" : "outside") 
+			<< " the triangle." << std::endl;
 
-	// Example 2: Point outside the triangle
-	Point P_outside(30, 15);
+	// Test case 2: Point outside the triangle
+	Point P2(30, 15);
+	std::cout << "Test 2: Point (30, 15) is " 
+			<< (bsp(A, B, C, P2) ? "inside" : "outside") 
+			<< " the triangle." << std::endl;
 
-	if (bsp(A, B, C, P_outside)) {
-		std::cout << "Example 2: The point (30, 15) is inside the triangle." << std::endl;
-	} else {
-		std::cout << "Example 2: The point (30, 15) is outside the triangle." << std::endl;
-	}
+	// Test case 3: Point on the edge of the triangle
+	Point P3(10, 30);
+	std::cout << "Test 3: Point (10, 30) is " 
+			<< (bsp(A, B, C, P3) ? "inside" : "outside") 
+			<< " the triangle." << std::endl;
 
-	// Example 3: Point on the edge of the triangle
-	Point P_on_edge(10, 30);
+	// Test case 4: Point on the vertex of the triangle
+	Point P4(0, 0);
+	std::cout << "Test 4: Point (0, 0) is " 
+			<< (bsp(A, B, C, P4) ? "inside" : "outside") 
+			<< " the triangle." << std::endl;
 
-	if (bsp(A, B, C, P_on_edge)) {
-		std::cout << "Example 3: The point (10, 30) is inside the triangle." << std::endl;
-	} else {
-		std::cout << "Example 3: The point (10, 30) is outside the triangle." << std::endl;
-	}
+	// Test case 5: Another point inside the triangle
+	Point P5(15, 10);
+	std::cout << "Test 5: Point (15, 10) is " 
+			<< (bsp(A, B, C, P5) ? "inside" : "outside") 
+			<< " the triangle." << std::endl;
 
-	// Example 4: Point at the vertex of the triangle
-	Point P_at_vertex(20, 0);
-
-	if (bsp(A, B, C, P_at_vertex)) {
-		std::cout << "Example 4: The point (20, 0) is inside the triangle." << std::endl;
-	} else {
-		std::cout << "Example 4: The point (20, 0) is outside the triangle." << std::endl;
-	}
+	// Test case 6: Point exactly at the centroid of the triangle
+	Point P6(10, 10);
+	std::cout << "Test 6: Point (10, 10) is " 
+			<< (bsp(A, B, C, P6) ? "inside" : "outside") 
+			<< " the triangle." << std::endl;
 
 	return 0;
 }

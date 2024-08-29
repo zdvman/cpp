@@ -6,11 +6,103 @@
 /*   By: dzuiev <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 11:59:39 by dzuiev            #+#    #+#             */
-/*   Updated: 2024/08/28 19:29:50 by dzuiev           ###   ########.fr       */
+/*   Updated: 2024/08/29 11:24:03 by dzuiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Point.hpp"
+
+/* ************************************************************************** */
+/*                                                                            */
+/*  BSP: Binary Space Partitioning                                            */
+/*                                                                            */
+/*  Explanation:                                                              */
+/*  - **Binary**: Refers to the fact that space is divided into two parts     */
+/*    at each step.                                                           */
+/*  - **Space**: Refers to the geometric space that is being divided,         */
+/*    which could be a 2D plane, 3D volume, etc.                              */
+/*  - **Partitioning**: Refers to the process of dividing the space into      */
+/*    distinct regions.                                                       */
+/*                                                                            */
+/*  **Binary Space Partitioning (BSP)** is a method used in computer          */
+/*  graphics, computational geometry, and game development to efficiently     */
+/*  manage and render complex scenes by recursively dividing a space into     */
+/*  convex sets using hyperplanes. In 2D, these divisions are often lines,    */
+/*  and in 3D, they are planes.                                               */
+/*                                                                            */
+/*  In the context of this project, BSP is used to determine whether a point  */
+/*  lies inside a triangle by partitioning the space and examining the        */
+/*  relative positions of points.                                             */
+/*                                                                            */
+/* ************************************************************************** */
+/*                                                                            */
+/* Input: A = (0, 0), B = (10, 30), C = (20, 0), P(10, 15)                    */
+/* Output: Inside                                                             */
+/* Explanation:                                                               */
+/*               B(10,30)                                                     */
+/*                 / \                                                        */
+/*                /   \                                                       */
+/*               /     \                                                      */
+/*              /   P   \      P'                                             */
+/*             /         \                                                    */
+/*      A(0,0) ----------- C(20,0)                                            */
+/*                                                                            */
+/* Input: A = (0, 0), B = (10, 30), C = (20, 0), P(30, 15)                    */
+/* Output: Outside                                                            */
+/* Explanation:                                                               */
+/*               B(10,30)                                                     */
+/*                 / \                                                        */
+/*                /   \                                                       */
+/*               /     \                                                      */
+/*              /       \      P                                              */
+/*             /         \                                                    */
+/*      A(0,0) ----------- C(20,0)                                            */
+/*                                                                            */
+/* Solution:                                                                  */
+/* Let the coordinates of the three corners be (x1, y1), (x2, y2) and         */
+/* (x3, y3). The coordinates of the given point P are (x, y).                 */
+/*                                                                            */
+/* 1. Calculate the area of the given triangle, i.e., the area of triangle    */
+/*    ABC.                                                                    */
+/*    Area A = [ x1(y2 – y3) + x2(y3 – y1) + x3(y1-y2) ] / 2                  */
+/*                                                                            */
+/* 2. Calculate the area of the triangle PAB. Let this area be A1.            */
+/*    Use the same formula to compute the area.                               */
+/*                                                                            */
+/* 3. Calculate the area of the triangle PBC. Let this area be A2.            */
+/*                                                                            */
+/* 4. Calculate the area of the triangle PAC. Let this area be A3.            */
+/*                                                                            */
+/* 5. If P lies inside the triangle, then A1 + A2 + A3 must be equal to A.    */
+/*    This means that the sum of the areas of triangles PAB, PBC, and PAC     */
+/*    is equal to the area of triangle ABC.                                   */
+/*                                                                            */
+/* ************************************************************************** */
+
+// Custom abs function implementation
+static Fixed abs(const Fixed& value) {
+    return (value < 0) ? value * -1 : value;
+}
+
+// Function to calculate the area of a triangle given its vertices
+static Fixed calculateArea(const Point& p1, const Point& p2, const Point& p3) {
+    return abs(
+        (p1.getX() * (p2.getY() - p3.getY())) +
+        (p2.getX() * (p3.getY() - p1.getY())) +
+        (p3.getX() * (p1.getY() - p2.getY()))
+    ) / Fixed(2);
+}
+
+// BSP function to determine if a point is inside the triangle
+bool bsp( Point const a, Point const b, Point const c, Point const point) {
+    Fixed areaABC = calculateArea(a, b, c); // Area of triangle ABC
+    Fixed areaPAB = calculateArea(point, a, b); // Area of triangle PAB
+    Fixed areaPBC = calculateArea(point, b, c); // Area of triangle PBC
+    Fixed areaPCA = calculateArea(point, c, a); // Area of triangle PCA
+
+    // Check if the sum of the areas of the triangles PAB, PBC, and PCA equals the area of ABC
+    return (areaABC == (areaPAB + areaPBC + areaPCA));
+}
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -96,99 +188,47 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// Helper function to calculate the sign of the area of a triangle
-static Fixed sign(const Point& p1, const Point& p2, const Point& p3) {
-	return (p1.getX() - p3.getX()) * (p2.getY() - p3.getY()) - 
-		(p2.getX() - p3.getX()) * (p1.getY() - p3.getY());
-}
-
-// BSP function to determine if a point is inside the triangle
-bool bsp(const Point& a, const Point& b, const Point& c, const Point& point) {
-	Fixed d1, d2, d3;
-	bool has_neg, has_pos;
-
-	d1 = sign(point, a, b);
-	d2 = sign(point, b, c);
-	d3 = sign(point, c, a);
-
-	has_neg = (d1 < 0) || (d2 < 0) || (d3 < 0);
-	has_pos = (d1 > 0) || (d2 > 0) || (d3 > 0);
-
-	return !(has_neg && has_pos);
-}
-
 /* ************************************************************************** */
 /*                                                                            */
-/*                      BSP Algorithm Implementation                          */
+/*  Helper function to calculate the sign of the area of a triangle.          */
+/*  The sign function determines whether a point lies on one side or the      */
+/*  other of a line formed by two other points.                               */
+/*  The result is a Fixed-point number that indicates the relative position   */
+/*  of the point with respect to the line.                                    */
 /*                                                                            */
 /* ************************************************************************** */
-/*                                                                            */
-/* Input: A = (0, 0), B = (10, 30), C = (20, 0), P(10, 15)                    */
-/* Output: Inside                                                             */
-/* Explanation:                                                               */
-/*               B(10,30)                                                     */
-/*                 / \                                                        */
-/*                /   \                                                       */
-/*               /     \                                                      */
-/*              /   P   \      P'                                             */
-/*             /         \                                                    */
-/*      A(0,0) ----------- C(20,0)                                            */
-/*                                                                            */
-/* Input: A = (0, 0), B = (10, 30), C = (20, 0), P(30, 15)                    */
-/* Output: Outside                                                            */
-/* Explanation:                                                               */
-/*               B(10,30)                                                     */
-/*                 / \                                                        */
-/*                /   \                                                       */
-/*               /     \                                                      */
-/*              /       \      P                                              */
-/*             /         \                                                    */
-/*      A(0,0) ----------- C(20,0)                                            */
-/*                                                                            */
-/* Solution:                                                                  */
-/* Let the coordinates of the three corners be (x1, y1), (x2, y2) and         */
-/* (x3, y3). The coordinates of the given point P are (x, y).                 */
-/*                                                                            */
-/* 1. Calculate the area of the given triangle, i.e., the area of triangle    */
-/*    ABC.                                                                    */
-/*    Area A = [ x1(y2 – y3) + x2(y3 – y1) + x3(y1-y2) ] / 2                  */
-/*                                                                            */
-/* 2. Calculate the area of the triangle PAB. Let this area be A1.            */
-/*    Use the same formula to compute the area.                               */
-/*                                                                            */
-/* 3. Calculate the area of the triangle PBC. Let this area be A2.            */
-/*                                                                            */
-/* 4. Calculate the area of the triangle PAC. Let this area be A3.            */
-/*                                                                            */
-/* 5. If P lies inside the triangle, then A1 + A2 + A3 must be equal to A.    */
-/*    This means that the sum of the areas of triangles PAB, PBC, and PAC     */
-/*    is equal to the area of triangle ABC.                                   */
-/*                                                                            */
-/* ************************************************************************** */
-
 /*
-// Custom abs function implementation
-Fixed abs(const Fixed& value) {
-    return (value < 0) ? value * -1 : value;
+static Fixed sign(const Point& p1, const Point& p2, const Point& p3) {
+    return (p1.getX() - p3.getX()) * (p2.getY() - p3.getY()) - 
+        (p2.getX() - p3.getX()) * (p1.getY() - p3.getY());
 }
+*/
 
-// Function to calculate the area of a triangle given its vertices
-Fixed calculateArea(const Point& p1, const Point& p2, const Point& p3) {
-    return abs(
-        (p1.getX() * (p2.getY() - p3.getY())) +
-        (p2.getX() * (p3.getY() - p1.getY())) +
-        (p3.getX() * (p1.getY() - p2.getY()))
-    ) / Fixed(2);
-}
+/* ************************************************************************** */
+/*                                                                            */
+/*  BSP (Binary Space Partitioning) function to determine if a point lies     */
+/*  inside a triangle formed by three other points.                           */
+/*                                                                            */
+/*  The function works by calculating the sign of the area for each of the    */
+/*  sub-triangles formed by the point and the edges of the triangle. If all   */
+/*  signs are consistent (all positive or all negative), the point is inside  */
+/*  the triangle. If the signs are mixed, the point is outside the triangle.  */
+/*                                                                            */
+/*  Returns `true` if the point lies inside the triangle, otherwise `false`.  */
+/*                                                                            */
+/* ************************************************************************** */
+/*
+bool	bsp( Point const a, Point const b, Point const c, Point const point) {
+    Fixed d1, d2, d3;
+    bool has_neg, has_pos;
 
-// BSP function to determine if a point is inside the triangle
-bool bsp(const Point& a, const Point& b, const Point& c, const Point& point) {
-    Fixed areaABC = calculateArea(a, b, c); // Area of triangle ABC
-    Fixed areaPAB = calculateArea(point, a, b); // Area of triangle PAB
-    Fixed areaPBC = calculateArea(point, b, c); // Area of triangle PBC
-    Fixed areaPCA = calculateArea(point, c, a); // Area of triangle PCA
+    d1 = sign(point, a, b);
+    d2 = sign(point, b, c);
+    d3 = sign(point, c, a);
 
-    // Check if the sum of the areas of the triangles PAB, PBC, and PCA equals the area of ABC
-    return (areaABC == (areaPAB + areaPBC + areaPCA));
+    has_neg = (d1 < 0) || (d2 < 0) || (d3 < 0);
+    has_pos = (d1 > 0) || (d2 > 0) || (d3 > 0);
+
+    return !(has_neg && has_pos);
 }
 */
