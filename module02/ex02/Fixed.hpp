@@ -6,7 +6,7 @@
 /*   By: dzuiev <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 17:10:28 by dzuiev            #+#    #+#             */
-/*   Updated: 2024/08/29 15:52:30 by dzuiev           ###   ########.fr       */
+/*   Updated: 2024/08/30 11:17:20 by dzuiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,18 +105,44 @@ public:
 
 /* ************************************************************************** */
 /*                                                                            */
-/*  Prefix vs. Postfix Increment/Decrement Operators in C++                   */
+/* The Role of `int` in Overloading Postfix Increment/Decrement Operators     */
 /*                                                                            */
-/*  - **Prefix (`++a`, `--a`)**:                                              */
-/*    - The operation is performed first, and then the result is returned.    */
-/*    - Does not take any parameters.                                         */
+/* Description:                                                               */
+/*     The `++` and `--` operators can be overloaded in C++ to provide both   */
+/*     prefix and postfix versions. Although these operators look the same    */
+/*     in code, their behavior differs based on their position relative to    */
+/*     the operand.                                                           */
 /*                                                                            */
-/*  - **Postfix (`a++`, `a--`)**:                                             */
-/*    - The current value is returned first, and then the operation is        */
-/*      performed.                                                            */
-/*    - Takes an `int` parameter to distinguish it from the prefix version.   */
-/*    - The `int` parameter is not used in the function body; it is a         */
-/*      placeholder to differentiate between the two overloads.               */
+/* Prefix Increment/Decrement:                                                */
+/*     - Syntax: `++a` or `--a`                                               */
+/*     - Function Signature: `Fixed& operator++();`                           */
+/*     - Behavior: Increments or decrements the value, then returns the       */
+/*       modified object.                                                     */
+/*                                                                            */
+/* Postfix Increment/Decrement:                                               */
+/*     - Syntax: `a++` or `a--`                                               */
+/*     - Function Signature: `Fixed operator++(int);`                         */
+/*     - Behavior: Returns the current value, then increments or decrements   */
+/*       the object.                                                          */
+/*                                                                            */
+/* Explanation:                                                               */
+/*     The `int` parameter in the postfix version is a "dummy" parameter      */
+/*     that is never actually used in the function body. Its purpose is to    */
+/*     differentiate the function signature from the prefix version.          */
+/*                                                                            */
+/* How the Compiler Differentiates:                                           */
+/*     - When the compiler sees `++a` or `--a`, it matches this to the        */
+/*       function signature with no parameters (`Fixed& operator++();`).      */
+/*     - When the compiler sees `a++` or `a--`, it matches this to the        */
+/*       function signature with the `int` parameter (`Fixed operator++(int);`).*/
+/*                                                                            */
+/* Summary:                                                                   */
+/*     The `int` parameter is not something you provide when calling the      */
+/*     operator; it's automatically managed by the compiler. The position of  */
+/*     the operator relative to the variable tells the compiler whether to    */
+/*     call the prefix or postfix version of the operator. The `int`          */
+/*     parameter in the postfix version is simply a way to allow both         */
+/*     versions to exist in the same class.                                   */
 /*                                                                            */
 /* ************************************************************************** */
 	Fixed& operator++(void); // prefix increment
