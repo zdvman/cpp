@@ -6,7 +6,7 @@
 /*   By: dzuiev <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 11:53:14 by dzuiev            #+#    #+#             */
-/*   Updated: 2024/08/29 16:03:25 by dzuiev           ###   ########.fr       */
+/*   Updated: 2024/08/30 11:26:59 by dzuiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #define POINT_HPP
 
 #include "Fixed.hpp"
+#include <cmath>
 
 class Point {
 
