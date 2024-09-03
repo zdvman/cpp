@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dzuiev <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/30 12:51:18 by dzuiev            #+#    #+#             */
-/*   Updated: 2024/09/03 15:49:42 by dzuiev           ###   ########.fr       */
+/*   Created: 2024/09/03 10:40:10 by dzuiev            #+#    #+#             */
+/*   Updated: 2024/09/03 16:48:06 by dzuiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,27 @@
 #define SCAV_TRAP_HPP
 
 #include "ClapTrap.hpp"
+#include <iostream>
 
 /* ************************************************************************** */
 /*                                                                            */
-/* Class: ScavTrap                                                            */
+/* ScavTrap Class:                                                            */
 /*                                                                            */
-/* Description:                                                               */
-/*     A derived class from `ClapTrap` with enhanced attributes (more hit     */
-/*     points, energy points, and attack damage). Adds a unique method for    */
-/*     gatekeeping.                                                           */
+/* ScavTrap is derived from ClapTrap using virtual inheritance.               */
 /*                                                                            */
-/* Inheritance:                                                               */
-/*     Inherits from `ClapTrap` and overrides some of its behavior.           */
+/* Virtual Inheritance:                                                       */
+/* - Virtual inheritance ensures that ScavTrap and FragTrap, when used        */
+/*   together in a multiple inheritance scenario (like in DiamondTrap),       */
+/*   share a single instance of ClapTrap as their base class.                 */
+/* - This prevents the ambiguity that would otherwise arise if ScavTrap       */
+/*   and FragTrap each had their own separate instance of ClapTrap.           */
+/*                                                                            */
+/* Usage in ScavTrap:                                                         */
+/* - ScavTrap inherits from ClapTrap and sets specific attributes related     */
+/*   to energy points.                                                        */
 /*                                                                            */
 /* ************************************************************************** */
-
-class ScavTrap : public ClapTrap {
+class ScavTrap : virtual public ClapTrap {
 	public:
 		ScavTrap(std::string name);
 		ScavTrap(const ScavTrap& other);

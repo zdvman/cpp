@@ -6,12 +6,12 @@
 /*   By: dzuiev <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 12:26:51 by dzuiev            #+#    #+#             */
-/*   Updated: 2024/08/30 14:35:21 by dzuiev           ###   ########.fr       */
+/*   Updated: 2024/09/03 15:50:00 by dzuiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLAPTRAP_HPP
-#define CLAPTRAP_HPP
+#ifndef CLAP_TRAP_HPP
+#define CLAP_TRAP_HPP
 
 #include <iostream> // For std::string and std::cout
 
