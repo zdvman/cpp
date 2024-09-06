@@ -6,7 +6,7 @@
 #    By: dzuiev <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/04 16:11:48 by dzuiev            #+#    #+#              #
-#    Updated: 2024/09/06 15:22:25 by dzuiev           ###   ########.fr        #
+#    Updated: 2024/09/06 17:28:54 by dzuiev           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ OBJ_DIR = .obj
 
 # **************************************************************************** #
 # Source and Object files
-FILES = main Dog Cat Animal WrongAnimal WrongCat
+FILES = main Dog Cat Animal Brain
 SRC = $(addprefix $(SRC_DIR)/, $(FILES:=.cpp))
 OBJ = $(addprefix $(OBJ_DIR)/, $(FILES:=.o))
 # **************************************************************************** #
