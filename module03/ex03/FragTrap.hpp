@@ -6,7 +6,7 @@
 /*   By: dzuiev <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 10:45:01 by dzuiev            #+#    #+#             */
-/*   Updated: 2024/09/03 16:47:32 by dzuiev           ###   ########.fr       */
+/*   Updated: 2024/09/07 13:25:25 by dzuiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ class FragTrap : virtual public  ClapTrap {
 		std::string getClassName() const;
 		FragTrap& operator=(const FragTrap& rhs);
 		void highFivesGuys(void);
-
 };
 
 #endif

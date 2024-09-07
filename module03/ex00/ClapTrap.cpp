@@ -6,19 +6,19 @@
 /*   By: dzuiev <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 12:27:07 by dzuiev            #+#    #+#             */
-/*   Updated: 2024/08/30 12:18:08 by dzuiev           ###   ########.fr       */
+/*   Updated: 2024/09/07 12:55:45 by dzuiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
 // Constructor
-ClapTrap::ClapTrap(std::string name) : _name(name), _hitPoints(10), _energyPoints(10), _attacDamage(0) {
+ClapTrap::ClapTrap(std::string name) : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
 	std::cout << "ClapTrap " << _name << " constructed." << std::endl;
 }
 
 // Copy Constructor
-ClapTrap::ClapTrap(const ClapTrap& other) : _name(other._name), _hitPoints(other._hitPoints), _energyPoints(other._energyPoints), _attacDamage(other._attacDamage) {
+ClapTrap::ClapTrap(const ClapTrap& other) : _name(other._name), _hitPoints(other._hitPoints), _energyPoints(other._energyPoints), _attackDamage(other._attackDamage) {
 	std::cout << "ClapTrap " << _name << " copied from " << other._name << "." << std::endl;
 }
 
@@ -29,13 +29,13 @@ ClapTrap::~ClapTrap() {
 
 // Copy Assignment Operator
 ClapTrap& ClapTrap::operator=(const ClapTrap& rhs) {
-	std::cout << "ClapTrap " << _name << " assigned from " << rhs._name << "." << std::endl;
 	if (this != &rhs) {
 		this->_name = rhs._name;
 		this->_hitPoints = rhs._hitPoints;
 		this->_energyPoints = rhs._energyPoints;
-		this->_attacDamage = rhs._attacDamage;
+		this->_attackDamage = rhs._attackDamage;
 	}
+	std::cout << "ClapTrap " << _name << " assigned from " << rhs._name << "." << std::endl;
 	return *this;
 }
 
@@ -48,7 +48,7 @@ void ClapTrap::attack(const std::string& target) {
 	} else {
 		std::cout << "ClapTrap " << _name
 				<< " attacks " << target
-				<< ", causing " << _attacDamage
+				<< ", causing " << _attackDamage
 				<< " points of damage!" << std::endl;
 		_energyPoints--;
 	}

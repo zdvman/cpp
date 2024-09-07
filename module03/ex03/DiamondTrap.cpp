@@ -6,13 +6,10 @@
 /*   By: dzuiev <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:55:39 by dzuiev            #+#    #+#             */
-/*   Updated: 2024/09/03 17:24:30 by dzuiev           ###   ########.fr       */
+/*   Updated: 2024/09/07 13:36:19 by dzuiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "FragTrap.hpp"
-#include "ClapTrap.hpp"
-#include "ClapTrap.hpp"
 #include "DiamondTrap.hpp"
 
 DiamondTrap::DiamondTrap(std::string name)
