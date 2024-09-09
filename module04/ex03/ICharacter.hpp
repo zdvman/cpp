@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
+/*   ICharacter.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dzuiev <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/06 13:07:58 by dzuiev            #+#    #+#             */
-/*   Updated: 2024/09/09 11:16:05 by dzuiev           ###   ########.fr       */
+/*   Created: 2024/09/09 14:41:31 by dzuiev            #+#    #+#             */
+/*   Updated: 2024/09/09 15:05:23 by dzuiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WRONG_ANIMAL_HPP
-#define WRONG_ANIMAL_HPP
+#ifndef ICHARACTER_HPP
+#define ICHARACTER_HPP
 
 #include <string>
-#include <iostream>
 
-class WrongAnimal {
-	protected:
-		std::string _type;
+class AMateria;
 
-	public:
-		WrongAnimal();
-		WrongAnimal(std::string type);
-		WrongAnimal(const WrongAnimal& other);
-		virtual ~WrongAnimal();
-
-		WrongAnimal& operator=(const WrongAnimal& rhs);
-		std::string getType() const;
-		virtual void makeSound() const; // Virtual function, making WrongAnimal abstract
+class ICharacter {
+public:
+    virtual ~ICharacter() {}
+    virtual std::string const & getName() const = 0;
+    virtual void equip(AMateria* m) = 0;
+    virtual void unequip(int idx) = 0;
+    virtual void use(int idx, ICharacter& target) = 0;
 };
 
 #endif

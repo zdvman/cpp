@@ -5,10 +5,11 @@
 #                                                     +:+ +:+         +:+      #
 #    By: dzuiev <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/08/28 11:50:41 by dzuiev            #+#    #+#              #
-#    Updated: 2024/09/07 15:28:30 by dzuiev           ###   ########.fr        #
+#    Created: 2024/09/04 16:11:48 by dzuiev            #+#    #+#              #
+#    Updated: 2024/09/09 13:57:01 by dzuiev           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 # Colors for messages
 GREEN=\033[0;32m
@@ -20,9 +21,9 @@ RESET=\033[0m
 
 # **************************************************************************** #
 # Basic Configurations
-NAME = bsp
+NAME = Animal
 
-DEBUG = -g3 -gdwarf-3 -fsanitize=address -fsanitize=undefined
+DEBUG = -g
 CXX_STANDARD = -std=c++98
 
 # **************************************************************************** #
@@ -51,7 +52,7 @@ OBJ_DIR = .obj
 
 # **************************************************************************** #
 # Source and Object files
-FILES = main Fixed Point bsp
+FILES = main Dog Cat AAnimal Brain
 SRC = $(addprefix $(SRC_DIR)/, $(FILES:=.cpp))
 OBJ = $(addprefix $(OBJ_DIR)/, $(FILES:=.o))
 # **************************************************************************** #
@@ -61,7 +62,7 @@ all: $(NAME)
 
 # Linking the executable
 $(NAME): $(OBJ)
-	@$(CXX) $(OBJ) -o $@ $(DEBUG)
+	@$(CXX) $(OBJ) -o $@
 	@echo "$(GREEN)$(NAME) compiled$(RESET)"
 
 # -o $@ - output file name $(NAME), $@ = $(NAME)

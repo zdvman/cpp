@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   MateriaSource.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dzuiev <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/06 10:54:58 by dzuiev            #+#    #+#             */
-/*   Updated: 2024/09/09 11:14:40 by dzuiev           ###   ########.fr       */
+/*   Created: 2024/09/09 15:06:38 by dzuiev            #+#    #+#             */
+/*   Updated: 2024/09/09 15:06:52 by dzuiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-#define ANIMAL_HPP
+#ifndef MATERIASOURCE_HPP
+#define MATERIASOURCE_HPP
 
-#include <string>
-#include <iostream>
+#include "IMateriaSource.hpp"
 
-class Animal {
-	protected:
-		std::string _type;
+class MateriaSource : public IMateriaSource {
+private:
+	AMateria* _materias[4];
 
-	public:
-		Animal();
-		Animal(std::string type);
-		Animal(const Animal& other);
-		virtual ~Animal();
+public:
+	MateriaSource();
+	MateriaSource(const MateriaSource& other);
+	MateriaSource& operator=(const MateriaSource& other);
+	~MateriaSource();
 
-		Animal& operator=(const Animal& rhs);
-		std::string getType() const;
-		virtual void makeSound() const; // Virtual function, making Animal abstract
+	void learnMateria(AMateria* m);
+	AMateria* createMateria(std::string const & type);
 };
 
 #endif

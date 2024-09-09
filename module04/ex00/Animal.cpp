@@ -6,31 +6,29 @@
 /*   By: dzuiev <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 11:04:17 by dzuiev            #+#    #+#             */
-/*   Updated: 2024/09/06 12:45:58 by dzuiev           ###   ########.fr       */
+/*   Updated: 2024/09/09 11:15:21 by dzuiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
 
-Animal::Animal() : type("Animal") {}
+Animal::Animal() : _type("Animal") {}
 
-Animal::Animal(std::string type) : type(type) {}
+Animal::Animal(std::string type) : _type(type) {}
 
-Animal::Animal(const Animal& other) {
-	*this = other;
-}
+Animal::Animal(const Animal& other) : _type(other._type) {}
 
 Animal::~Animal() {}
 
 Animal& Animal::operator=(const Animal& rhs) {
 	if (this != &rhs) {
-		type = rhs.type;
+		_type = rhs._type;
 	}
 	return *this;
 }
 
 std::string Animal::getType() const {
-	return this->type;
+	return this->_type;
 }
 
 void Animal::makeSound() const {

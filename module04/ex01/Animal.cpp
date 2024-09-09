@@ -6,23 +6,22 @@
 /*   By: dzuiev <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 11:04:17 by dzuiev            #+#    #+#             */
-/*   Updated: 2024/09/06 17:33:56 by dzuiev           ###   ########.fr       */
+/*   Updated: 2024/09/09 13:19:33 by dzuiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
 
-Animal::Animal() : type("Animal") {
+Animal::Animal() : _type("default Animal") {
 	std::cout << "Animal default costructor called" << std::endl;
 }
 
-Animal::Animal(std::string type) : type(type) {
-	std::cout << "Animal costructor with type value called" << std::endl;
+Animal::Animal(std::string type) : _type(type) {
+	std::cout << "Animal costructor with type = \"" << type <<"\" value called" << std::endl;
 }
 
-Animal::Animal(const Animal& other) {
+Animal::Animal(const Animal& other) : _type(other._type) {
 	std::cout << "Animal copy constructor called" << std::endl;
-	*this = other;
 }
 
 Animal::~Animal() {
@@ -31,13 +30,13 @@ Animal::~Animal() {
 
 Animal& Animal::operator=(const Animal& rhs) {
 	if (this != &rhs) {
-		type = rhs.type;
+		_type = rhs._type;
 	}
 	return *this;
 }
 
 std::string Animal::getType() const {
-	return this->type;
+	return this->_type;
 }
 
 void Animal::makeSound() const {

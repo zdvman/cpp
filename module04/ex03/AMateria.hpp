@@ -1,34 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
+/*   AMateria.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dzuiev <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/06 13:07:58 by dzuiev            #+#    #+#             */
-/*   Updated: 2024/09/09 11:16:05 by dzuiev           ###   ########.fr       */
+/*   Created: 2024/09/09 14:20:20 by dzuiev            #+#    #+#             */
+/*   Updated: 2024/09/09 14:49:57 by dzuiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WRONG_ANIMAL_HPP
-#define WRONG_ANIMAL_HPP
+#ifndef AMATERIA_HPP
+#define AMATERIA_HPP
 
 #include <string>
 #include <iostream>
+#include "ICharacter.hpp"  // Forward declare ICharacter
 
-class WrongAnimal {
+class AMateria {
 	protected:
 		std::string _type;
 
 	public:
-		WrongAnimal();
-		WrongAnimal(std::string type);
-		WrongAnimal(const WrongAnimal& other);
-		virtual ~WrongAnimal();
+		// Default constructor (optional if needed)
+		AMateria();
+		AMateria(const std::string& type);
+		AMateria(const AMateria& other);
+		virtual ~AMateria();
 
-		WrongAnimal& operator=(const WrongAnimal& rhs);
-		std::string getType() const;
-		virtual void makeSound() const; // Virtual function, making WrongAnimal abstract
+		AMateria& operator=(const AMateria& rhs);
+		const std::string& getType() const; //Returns the materia type
+		virtual AMateria* clone() const = 0;
+		virtual void use(ICharacter& target);
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dzuiev <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 15:08:42 by dzuiev            #+#    #+#             */
-/*   Updated: 2024/09/06 15:14:19 by dzuiev           ###   ########.fr       */
+/*   Updated: 2024/09/09 11:18:46 by dzuiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ WrongCat::~WrongCat() {}
 
 WrongCat& WrongCat::operator=(const WrongCat& rhs) {
 	if (this != &rhs) {
-		this->type = rhs.type;
+		WrongAnimal::operator=(rhs);
 	}
 	return *this;
 }

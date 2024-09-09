@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dzuiev <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/06 13:07:58 by dzuiev            #+#    #+#             */
-/*   Updated: 2024/09/09 11:16:05 by dzuiev           ###   ########.fr       */
+/*   Created: 2024/09/06 11:19:26 by dzuiev            #+#    #+#             */
+/*   Updated: 2024/09/09 13:31:09 by dzuiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WRONG_ANIMAL_HPP
-#define WRONG_ANIMAL_HPP
+#ifndef CAT_HPP
+#define CAT_HPP
 
+#include "AAnimal.hpp"
+#include "Brain.hpp"
 #include <string>
 #include <iostream>
 
-class WrongAnimal {
-	protected:
-		std::string _type;
+class Cat : public AAnimal {
+	private:
+		Brain* _brain;
 
 	public:
-		WrongAnimal();
-		WrongAnimal(std::string type);
-		WrongAnimal(const WrongAnimal& other);
-		virtual ~WrongAnimal();
+		Cat();
+		Cat(const Cat& other);
+		~Cat();
 
-		WrongAnimal& operator=(const WrongAnimal& rhs);
-		std::string getType() const;
-		virtual void makeSound() const; // Virtual function, making WrongAnimal abstract
+		Cat& operator=(const Cat& rhs);
+		void makeSound() const; // Overrides the base class virtual function
+		Brain* getBrain() const;
 };
 
 #endif

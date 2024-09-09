@@ -6,22 +6,22 @@
 /*   By: dzuiev <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 12:09:15 by dzuiev            #+#    #+#             */
-/*   Updated: 2024/09/09 13:52:27 by dzuiev           ###   ########.fr       */
+/*   Updated: 2024/09/09 13:55:48 by dzuiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "Cat.hpp"
 #include "Dog.hpp"
 #include "Brain.hpp"
 
 int main()
 {
-	Animal x = Animal();
-	Animal* y = new Animal();
-	x.makeSound();
-	*y = x;
-	delete y;
+	// AAnimal x = AAnimal();
+	// AAnimal* y = new AAnimal();
+	// x.makeSound();
+	// *y = x;
+	// delete y;
 
 	Cat* originalCat = new Cat();
 	Cat* copiedCat = new Cat(*originalCat);  // Deep copy
@@ -45,7 +45,7 @@ int main()
 	std::cout << "Copied Cat Brain Address: " << b->getBrain() << std::endl;
 	std::cout << "Assigned Cat Brain Address: " << c->getBrain() << std::endl;
 
-	const Animal* animals[4];
+	const AAnimal* animals[4];
 
 	for (int i = 0; i < 4; i++) {
 		if (i < 2) {

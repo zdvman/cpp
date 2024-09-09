@@ -6,7 +6,7 @@
 /*   By: dzuiev <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 10:54:58 by dzuiev            #+#    #+#             */
-/*   Updated: 2024/09/06 12:44:46 by dzuiev           ###   ########.fr       */
+/*   Updated: 2024/09/09 11:26:30 by dzuiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 class Animal {
 	protected:
-		std::string type;
+		std::string _type;
 
 	public:
 		Animal();
