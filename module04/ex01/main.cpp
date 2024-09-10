@@ -6,7 +6,7 @@
 /*   By: dzuiev <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 12:09:15 by dzuiev            #+#    #+#             */
-/*   Updated: 2024/09/09 13:52:27 by dzuiev           ###   ########.fr       */
+/*   Updated: 2024/09/10 16:45:26 by dzuiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,14 @@
 
 int main()
 {
+	Dog basic;
+	std::cout << "Original Brain Address: " << basic.getBrain() << std::endl;
+	{
+		Dog tmp = basic;
+		std::cout << "tmp Address: " << tmp.getBrain() << std::endl;
+	}
+	std::cout << "Original Brain Address after: " << basic.getBrain() << std::endl;
+
 	Animal x = Animal();
 	Animal* y = new Animal();
 	x.makeSound();

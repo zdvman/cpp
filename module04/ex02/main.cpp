@@ -6,7 +6,7 @@
 /*   By: dzuiev <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 12:09:15 by dzuiev            #+#    #+#             */
-/*   Updated: 2024/09/09 13:55:48 by dzuiev           ###   ########.fr       */
+/*   Updated: 2024/09/10 16:53:24 by dzuiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 int main()
 {
+	// AAnimal test;
 	// AAnimal x = AAnimal();
 	// AAnimal* y = new AAnimal();
 	// x.makeSound();

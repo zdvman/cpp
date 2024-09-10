@@ -6,20 +6,27 @@
 /*   By: dzuiev <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 13:08:09 by dzuiev            #+#    #+#             */
-/*   Updated: 2024/09/09 11:17:01 by dzuiev           ###   ########.fr       */
+/*   Updated: 2024/09/10 16:09:04 by dzuiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "WrongAnimal.hpp"
 
-WrongAnimal::WrongAnimal() : _type("WrongAnimal") {}
+WrongAnimal::WrongAnimal() : _type("default WrongAnimal") {
+	std::cout << "WrongAnimal default constructor called" << std::endl;
+}
 
-WrongAnimal::WrongAnimal(std::string type) : _type(type) {}
+WrongAnimal::WrongAnimal(std::string type) : _type(type) {
+	std::cout << "WrongAnimal constructor with type = \"" << type <<"\" value called" << std::endl;
+}
 
-WrongAnimal::WrongAnimal(const WrongAnimal& other) : _type(other._type) {}
+WrongAnimal::WrongAnimal(const WrongAnimal& other) : _type(other._type) {
+	std::cout << "WrongAnimal copy constructor called" << std::endl;
+}
 
-WrongAnimal::~WrongAnimal() {}
-
+WrongAnimal::~WrongAnimal() {
+	std::cout << "WrongAnimal destructor called" << std::endl;
+}
 
 WrongAnimal& WrongAnimal::operator=(const WrongAnimal& rhs) {
 	if (this != &rhs) {

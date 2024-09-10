@@ -6,7 +6,7 @@
 /*   By: dzuiev <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 15:03:39 by dzuiev            #+#    #+#             */
-/*   Updated: 2024/09/06 15:17:53 by dzuiev           ###   ########.fr       */
+/*   Updated: 2024/09/10 16:21:37 by dzuiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 class WrongCat : public WrongAnimal {
 	public:
 		WrongCat();
-		WrongCat(std::string type);
 		WrongCat(const WrongCat& other);
 		~WrongCat();
 

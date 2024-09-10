@@ -6,7 +6,7 @@
 /*   By: dzuiev <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:06:17 by dzuiev            #+#    #+#             */
-/*   Updated: 2024/09/09 16:57:05 by dzuiev           ###   ########.fr       */
+/*   Updated: 2024/09/10 17:01:06 by dzuiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 class IMateriaSource {
 public:
 	virtual ~IMateriaSource() {}                                           // Virtual destructor
-	virtual void learnMateria(AMateria* m) = 0;                           // Stores a Materia in the source
+	virtual void learnMateria(AMateria*) = 0;                           // Stores a Materia in the source
 	virtual AMateria* createMateria(std::string const & type) = 0;         // Creates a Materia of a given type
 };
 

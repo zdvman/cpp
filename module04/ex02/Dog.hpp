@@ -6,7 +6,7 @@
 /*   By: dzuiev <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 11:39:22 by dzuiev            #+#    #+#             */
-/*   Updated: 2024/09/09 13:30:48 by dzuiev           ###   ########.fr       */
+/*   Updated: 2024/09/10 16:54:15 by dzuiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ class Dog : public AAnimal {
 		~Dog();
 
 		Dog& operator=(const Dog& rhs);
-		void makeSound() const; // Overrides the base class virtual function
+		void makeSound() const;
 		Brain* getBrain() const;
 };
 

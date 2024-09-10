@@ -6,7 +6,7 @@
 /*   By: dzuiev <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 11:19:26 by dzuiev            #+#    #+#             */
-/*   Updated: 2024/09/09 13:31:09 by dzuiev           ###   ########.fr       */
+/*   Updated: 2024/09/10 16:54:07 by dzuiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ class Cat : public AAnimal {
 		~Cat();
 
 		Cat& operator=(const Cat& rhs);
-		void makeSound() const; // Overrides the base class virtual function
+		void makeSound() const;
 		Brain* getBrain() const;
 };
 

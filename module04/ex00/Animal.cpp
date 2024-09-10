@@ -6,19 +6,27 @@
 /*   By: dzuiev <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 11:04:17 by dzuiev            #+#    #+#             */
-/*   Updated: 2024/09/09 11:15:21 by dzuiev           ###   ########.fr       */
+/*   Updated: 2024/09/10 16:04:19 by dzuiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
 
-Animal::Animal() : _type("Animal") {}
+Animal::Animal() : _type("default Animal") {
+	std::cout << "Animal default constructor called" << std::endl;
+}
 
-Animal::Animal(std::string type) : _type(type) {}
+Animal::Animal(std::string type) : _type(type) {
+	std::cout << "Animal constructor with type = \"" << type <<"\" value called" << std::endl;
+}
 
-Animal::Animal(const Animal& other) : _type(other._type) {}
+Animal::Animal(const Animal& other) : _type(other._type) {
+	std::cout << "Animal copy constructor called" << std::endl;
+}
 
-Animal::~Animal() {}
+Animal::~Animal() {
+	std::cout << "Animal destructor called" << std::endl;
+}
 
 Animal& Animal::operator=(const Animal& rhs) {
 	if (this != &rhs) {

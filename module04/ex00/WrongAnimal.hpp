@@ -6,7 +6,7 @@
 /*   By: dzuiev <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 13:07:58 by dzuiev            #+#    #+#             */
-/*   Updated: 2024/09/09 11:16:05 by dzuiev           ###   ########.fr       */
+/*   Updated: 2024/09/10 16:27:28 by dzuiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ class WrongAnimal {
 
 		WrongAnimal& operator=(const WrongAnimal& rhs);
 		std::string getType() const;
-		virtual void makeSound() const; // Virtual function, making WrongAnimal abstract
+		void makeSound() const;
 };
 
 #endif
